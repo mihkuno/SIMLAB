@@ -1,3 +1,110 @@
+
+
+# =================================
+# Discrete probability
+# =================================
+
+
+# (Bernoulli) Simulate tossing a coin with probability of heads p. 
+
+p = 0.5;
+U = runif(1, min = 0, max = 1);
+X = (U < p);
+
+
+# (Coin Toss Simulation) Write codes to simulate tossing a fair coin to see how the law of large numbers works.
+
+n = 1000;
+U = runif(n, min = 0, max = 1);
+toss = U < 0.5;
+a = numeric(n + 1);
+avg = numeric(n);
+for(i in 2 : n + 1)
+{
+a[i] = a[i − 1] + toss[i − 1];
+avg[i − 1] = a[i]/(i − 1);
+}
+plot(1 : n, avg[1 : n], type = ”l”, lwd = 5, col = ”blue”, ylab = ”P roportionofHeads”,
+xlab = ”CoinT ossNumber”, cex.main = 1.25, cex.lab = 1.5, cex.axis = 1.75)
+
+
+# (Binomial) Generate a Binomial(50, 0.2) random variable.
+
+p = 0.2;
+n = 50;
+U = runif(n, min = 0, max = 1);
+X = sum(U < p);
+
+
+
+# Give an algorithm to simulate the value of a random variable X such that
+
+P = c(0.35, 0.5, 0.9, 1);
+X = c(1, 2, 3, 4);
+counter = 1;
+r = runif(1, min = 0, max = 1);
+while(r > P[counter])
+counter = counter + 1;
+end
+X[counter]
+
+
+
+# =================================
+# Continuous probability
+# =================================
+
+
+# (Exponential) Generate an Exponential(1) random variable
+
+U = runif(1, min = 0, max = 1);
+X = −log(U)
+
+# (Gamma) Generate a Gamma(20,1) random variable.
+
+n = 20;
+lambda = 1;
+X = (−1/lambda) ∗ sum(log(runif(n, min = 0, max = 1)));
+
+
+# (Poisson) Generate a Poisson random variable. Hint: In this example, use the fact that the number of events in the interval [0, t] has Poisson distribution when the elapsed times between the events are Exponential.
+
+
+Lambda = 2;
+i = 0;
+U = runif(1, min = 0, max = 1);
+Y = −(1/Lambda) ∗ log(U);
+sum = Y ;
+while(sum < 1)
+{U = runif(1, min = 0, max = 1);
+Y = −(1/Lambda) ∗ log(U);
+sum = sum + Y ;
+i = i + 1; }
+X = i
+
+
+
+# (Box-Muller) Generate 5000 pairs of normal random variables and plot both histograms.
+
+n = 5000;
+U1 = runif(n, min = 0, max = 1)
+U2 = runif(n, min = 0, max = 1)
+Z1 = sqrt(−2 ∗ log(U1)) ∗ cos(2 ∗ pi ∗ U2)
+Z2 = sqrt(−2 ∗ log(U1)) ∗ sin(2 ∗ pi ∗ U2)
+hist(Z1, col = ”wheat”, label = T)
+
+
+
+
+
+
+
+
+
+
+
+
+
 ############################################################
 # Example 1: Simulating a Bernoulli Trial using runif()
 ############################################################
